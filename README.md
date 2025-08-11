@@ -92,7 +92,11 @@ Projeyi şu linkten canlı olarak inceleyebilirsin:
 ## ⚙️ Kurulum
 1. Depoyu bilgisayarınıza klonlayın:
 ```bash
-git clone https://github.com/hacerebra/Librosh.git
+git clone https://github.com/hacerebra/Librosh.git ```
 
 2. Proje klasörüne girin ve index.html dosyasını bir web tarayıcısında açın.
 
+<img width="1588" height="1500" alt="Mockup 2" src="https://github.com/user-attachments/assets/1943cd80-54e8-427a-a60e-1e7097adbecd" />
+<img width="1588" height="1500" alt="Mockup 4" src="https://github.com/user-attachments/assets/c26b0275-e40b-4e20-b06c-e380cdf8b017" />
+<img width="1588" height="1500" alt="Mockup Scene 4" src="https://github.com/user-attachments/assets/6970b578-35e6-49ec-a543-c09962dabfcf" />
+<img width="1588" height="1500" alt="Mockup 4" src="https://github.com/user-attachments/assets/93171ce1-a1aa-4efa-9d74-f00fe04675e3" />
