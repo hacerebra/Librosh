@@ -90,17 +90,15 @@ Projeyi şu linkten canlı olarak inceleyebilirsin:
 ---
 
 ## ⚙️ Kurulum
-```markdown
 1. Depoyu bilgisayarınıza klonlayın:
 ```bash
-git clone https://github.com/hacerebra/Librosh.git 
-
+git clone https://github.com/hacerebra/Librosh.git
+```
 2. Proje klasörüne girin ve index.html dosyasını bir web tarayıcısında açın.
 
 ---
 
 ## 📸 Mockup Görselleri
-
 Projeye ait tasarım mockupları aşağıda yer almaktadır:
 
 ![Mockup 1](assets/screenshots/mockup1.png)  
