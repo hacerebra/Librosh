@@ -54,6 +54,8 @@ HTML, CSS ve JavaScript kullanarak geliştirilmiş interaktif bir kitap yönetim
 ---
 
 ## 📂 Proje Dosya Yapısı
+
+```
 ├── index.html
 ├── favoriler.html
 ├── kategoriler.html
@@ -91,5 +93,6 @@ Projeyi şu linkten canlı olarak inceleyebilirsin:
 1. Depoyu bilgisayarınıza klonlayın:
 ```bash
 git clone https://github.com/hacerebra/Librosh.git
+
 2. Proje klasörüne girin ve index.html dosyasını bir web tarayıcısında açın.
 
