@@ -80,7 +80,7 @@ HTML, CSS ve JavaScript kullanarak geliştirilmiş interaktif bir kitap yönetim
 │ ├── images/
 │ └── screenshots/
 └── README.md
-
+```
 ---
 
 ## 🌐 Canlı Demo
