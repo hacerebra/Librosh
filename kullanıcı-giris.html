@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Librosh | Giris</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Manufacturing+Consent&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="register-container">
+      <div class="form-section">
+        <div class="logo">
+          <img src="assets/icons/logo.png" alt="Librosh Logo" style="height: 51px; vertical-align: middle;">
+        </div>
+        <h2 class="form-title">Giriş Yap</h2>
+        <form class="register-form">
+            <div class="input-wrapper">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="ex@example.com" />
+              </div>
+              <div class="input-wrapper">
+                <label for="password">Şifre</label>
+                <input type="password" id="password" placeholder="********" />
+                <img src="assets/icons/eye.svg" alt="Göster" id="togglePassword" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); cursor: pointer;" />
+              </div>              
+  
+          <button type="submit" class="register-button">Giriş Yap</button>
+          <a href="sifre-hatirlat.html" class="link-button">
+                  <img src="assets/icons/lock.svg" alt="Kilit İkonu" width="16" height="16">
+                  Parolamı Unuttum
+                </a>
+        </form>
+            <nav class="menu">
+                <a href="index.html" class="link-button"
+                  onmouseenter="this.querySelector('img').src='assets/icons/home-light.svg'"
+                  onmouseleave="this.querySelector('img').src='assets/icons/home.svg'">
+                  <img src="assets/icons/home.svg" alt="Edit İkonu" width="16" height="16">
+                  Ana Sayfa
+                  </a>
+                <a href="kitaplar.html" class="link-button"
+                  onmouseenter="this.querySelector('img').src='assets/icons/categories-light.svg'"
+                  onmouseleave="this.querySelector('img').src='assets/icons/categories.svg'">
+                  <img src="assets/icons/categories.svg" alt="Kategoriler İkonu" width="16" height="16">
+                  Kategoriler
+                </a>
+                <a href="kullanıcı-kayit.html" class="link-button"
+                  onmouseenter="this.querySelector('img').src='assets/icons/edit-light.svg'"
+                  onmouseleave="this.querySelector('img').src='assets/icons/edit.svg'">
+                  <img src="assets/icons/edit.svg" alt="Edit İkonu" width="16" height="16">
+                  Kayıt Ol
+                </a>
+              </nav>
+      </div>
+      <div class="image-section">
+        <img src="assets/images/bilgisayar.png" alt="Kayıt Görseli">
+      </div>
+    </div>
+    <div id="customAlert" class="custom-alert">
+      <div class="alert-box">
+        <h3 class="alert-title">Bilgilendirme</h3>
+        <p id="alertMessage"></p>
+        <button onclick="closeCustomAlert()">Tamam</button>
+      </div>
+    </div>
+  </div>
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+  const passwordInput = document.getElementById('password');
+
+  togglePassword.addEventListener('click', function () {
+    const isPassword = passwordInput.type === 'password';
+    passwordInput.type = isPassword ? 'text' : 'password';
+    this.src = isPassword ? 'assets/icons/eye-off.svg' : 'assets/icons/eye.svg';
+    this.alt = isPassword ? 'Gizle' : 'Göster';
+  });
+      document.querySelector('.register-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+      
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        const user = users.find(u => u.email === email && u.password === password);
+      
+        if (user) {   
+          showCustomAlert(`Hoş geldin, ${user.username}!`);
+          localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+          setTimeout(() => {
+            window.location.href = "kullanıcı-home.html";
+            }, 1000); // 1 saniye bekleyip yönlendir
+
+        } else {
+          showCustomAlert("E-posta veya şifre yanlış.");
+        }
+      });
+
+      </script>
+      <script src="script.js"></script>
+      <script src="alert.js"></script>
+  </body>
+  </html>

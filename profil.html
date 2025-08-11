@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Librosh | Profil</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Manufacturing+Consent&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">
+      <img src="assets/icons/logo.png">
+    </div>
+    <nav class="menu">
+      <a href="kategoriler.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/categories-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/categories.svg'">
+        <img src="assets/icons/categories.svg" alt="Kategoriler İkonu" width="24" height="24">
+        Kategoriler
+      </a>
+      <a href="kullanıcı-home.html" class="link-button"
+      onmouseenter="this.querySelector('img').src='assets/icons/home-light.svg'"
+      onmouseleave="this.querySelector('img').src='assets/icons/home.svg'">
+      <img src="assets/icons/home.svg" alt="ev İkonu" width="24" height="24">
+      Ana Sayfa
+      </a>
+      <a href="kitaplık.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/library-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/library.svg'">
+        <img src="assets/icons/library.svg" alt="kitaplık İkonu" width="24" height="24">
+        Kitaplığım
+      </a>
+      <a href="favoriler.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/heart-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/heart.svg'">
+        <img src="assets/icons/heart.svg" alt="Kalp İkonu" width="24" height="24">
+        Favorilerim
+      </a>
+      <a href="#" class="menu-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/user.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/user-light.svg'">
+        <img src="assets/icons/user-light.svg" alt="Kullanıcı İkonu" width="24" height="24">
+        Profilim
+      </a>
+      <a href="#" class="notification-icon" id="notificationIcon">
+        <img src="assets/icons/bell.svg" alt="Bildirim İkonu" width="24" height="24">
+        <span class="badge" id="notificationBadge">0</span>
+      </a>   
+      <a href="index.html" class="notification-icon">
+        <img src="assets/icons/exit.svg" alt="Çıkış İkonu" width="24" height="24">
+      </a>
+    </nav>
+  </header>
+  
+  <div class="background-profile">
+    <main class="profile-main">
+      <section class="user-info">
+        <div class="profile-photo">
+          <img src="assets/images/female.png" alt="Profil Fotoğrafı">
+        </div>
+        <div class="user-details">
+          <h2 id="kullaniciAdSoyad">
+            <a href="profile-edit.html">
+              <img src="assets/icons/edit.svg" class="edit-icon" alt="Düzenle" style="cursor: pointer;">
+            </a>
+          </h2>
+          <div class="stats">
+            <span id="kitaplikCount">
+              <img src="assets/icons/library.svg" alt="Kitaplık" width="24" height="24">
+              <span class="count">3</span>
+            </span>
+            <span id="favorilerCount">
+              <img src="assets/icons/heart.svg" alt="Favoriler" width="24" height="24">
+              <span class="count">1</span>
+            </span>            
+          </div>
+          <div class="personal">
+            <span><img src="assets/icons/user.svg" alt="" width="24" height="24"> <span id="kullaniciCinsiyet"></span></span>
+            <span><img src="assets/icons/date.svg" alt="" width="24" height="24"> <span id="kullaniciDogumTarihi"></span></span>
+            <span><img src="assets/icons/mail.svg" alt="" width="24" height="24"> <span id="kullaniciEmail"></span></span>
+          </div>          
+        </div>
+      </section>
+    </div>
+    
+      <section class="favorites-section">
+        <h3>Favorilerinizden Seçmeler</h3>
+        <div class="kitaplar-container" id="favorilerContainer"></div>
+      </section>
+    
+      <div class="actions">
+        <div class="toggle-container">
+          <button class="danger-link-button">
+            <img src="assets/icons/bell-red.svg" alt="Bildirim İkonu" width="16" height="16">
+            Bildirimleri Kapat
+          </button>
+      
+          <label class="switch">
+            <input type="checkbox" id="notificationToggle">
+            <span class="toggle-track round"></span>
+          </label>
+        </div>
+      
+        <button class="danger-button-secondary">
+          <img src="assets/icons/trash-all-red.svg" alt="Favori" width="16" height="16">
+          Favorileri Temizle
+        </button>
+
+        <button class="danger-button">
+          <img src="assets/icons/quit-light.svg" alt="Sil" width="16" height="16">
+          Hesabı Kapat
+        </button>
+    
+      </div>  
+      
+      <div id="customAlert" class="custom-alert">
+        <div class="alert-box">
+          <h2 class="alert-title">! Bilgilendirme</h2>
+          <p id="alertMessage">Hesabınız silinecek. Emin misiniz?</p>
+          <div class="alert-buttons">
+            <button onclick="confirmAccountDeletion()">Evet</button>
+            <button onclick="closeCustomAlert()">Vazgeç</button>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+    
+    <div id="notificationPanel">
+      <div class="notification-header">
+        <img src="assets/icons/bell.svg" alt="Bildirim" class="notif-bell-icon">
+        <h3>Bildirimler</h3>
+        <div class="notification-actions">
+          <button id="markAllReadBtn">Tümünü Oku</button>
+          <button id="clearAllBtn">Tümünü Sil</button>
+          <button id="closeNotifBtn">✕</button>
+        </div>
+      </div>
+      <div id="notificationList"></div>
+    </div>  
+
+ <script>
+        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        const favorilerContainer = document.getElementById("favorilerContainer");
+        const favorilerList = JSON.parse(localStorage.getItem(`favoriler_${loggedInUser.email}`)) || [];
+        if (favorilerList.length === 0) {
+  favorilerContainer.innerHTML = "<p class='bos-favori'>Favorilerinizde kitap yok. Kategorileri keşfet.</p>";
+} else {
+  favorilerList.forEach(kitap => {
+    const card = document.createElement('div');
+    card.className = 'kitap-karti';
+    card.innerHTML = `
+      <img src="${kitap.cover || 'https://via.placeholder.com/120x180?text=No+Image'}" alt="${kitap.title}" class="kitap-resim">
+      <div class="kitap-bilgi">
+          <p class="kitap-adi">${kitap.title}</p>
+          <p class="yazar-adi">${kitap.author}</p>
+      </div>
+    `;
+    favorilerContainer.appendChild(card);
+  });
+}
+
+if (loggedInUser) {
+  const email = loggedInUser.email;
+
+  // Kullanıcıya özel kitaplık ve favoriler anahtarları
+  const kitaplikKey = `kitaplik_${email}`;
+  const favorilerKey = `favoriler_${email}`;
+
+  // Kitaplık ve favoriler listelerini çek
+  const kitaplikList = JSON.parse(localStorage.getItem(kitaplikKey)) || [];
+  const favorilerList = JSON.parse(localStorage.getItem(favorilerKey)) || [];
+
+  // Sayıları DOM'a yaz
+  document.querySelector('#kitaplikCount .count').textContent = kitaplikList.length;
+  document.querySelector('#favorilerCount .count').textContent = favorilerList.length;
+
+    // Kullanıcı bilgilerini DOM'a yaz
+    document.getElementById("kullaniciAdSoyad").innerHTML = `
+  ${loggedInUser.username}
+  <a href="profile-edit.html">
+    <img src="assets/icons/edit.svg" class="edit-icon" alt="Düzenle" style="cursor:pointer;">
+  </a>`;
+  document.getElementById("kullaniciCinsiyet").textContent = loggedInUser.gender;
+  document.getElementById("kullaniciDogumTarihi").textContent = loggedInUser.dob;
+  document.getElementById("kullaniciEmail").textContent = loggedInUser.email;
+
+}
+
+// Cinsiyete göre profil fotoğrafını güncelle
+const profilePhoto = document.querySelector('.profile-photo img');
+if (loggedInUser.gender.toLowerCase() === 'erkek') {
+  profilePhoto.src = 'assets/images/male.png';
+} else if (loggedInUser.gender.toLowerCase() === 'kadın') {
+  profilePhoto.src = 'assets/images/female.png';
+} else {
+  profilePhoto.src = 'assets/images/female.png'; // varsayılan
+}
+
+document.querySelector('.danger-button-secondary').addEventListener('click', () => {
+  // Favoriler listesini temizle
+  localStorage.removeItem(`favoriler_${loggedInUser.email}`);
+  
+  // DOM'daki favoriler alanını temizle
+  favorilerContainer.innerHTML = "<p class='bos-favori'>Favorilerinizde kitap yok. Kategorileri keşfet.</p>";
+  
+  // Favori sayısını sıfırla
+  document.querySelector('#favorilerCount .count').textContent = "0";
+});
+
+
+ // "Hesabı Kapat" butonuna basıldığında bu çalışacak
+document.querySelector('.danger-button').addEventListener('click', () => {
+  showCustomAlert("Hesabınızı kalıcı olarak silmek istediğinize emin misiniz?", "Hesap Silme Onayı");
+});
+
+// Onay verilince çalışacak
+function confirmAccountDeletion() {
+  const allUsers = JSON.parse(localStorage.getItem("users")) || [];
+  const updatedUsers = allUsers.filter(user => user.email !== loggedInUser.email);
+
+  // Kayıtlı kullanıcı listesini güncelle
+  localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+  // Kullanıcının tüm bilgilerini temizle
+  localStorage.removeItem("loggedInUser");
+  localStorage.removeItem(`kitaplik_${loggedInUser.email}`);
+  localStorage.removeItem(`favoriler_${loggedInUser.email}`);
+
+  closeCustomAlert(); // Alerti kapat
+
+  // Giriş sayfasına yönlendir
+  window.location.href = "index.html";
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const notifToggle = document.getElementById('notificationToggle'); // switch input
+  const notifButton = document.querySelector('.danger-link-button'); // kırmızı buton
+
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+  if (!loggedInUser) return;
+
+  let enabled = loggedInUser.notificationsEnabled !== false;
+
+  // Başlangıçta toggle durumunu ayarla
+  if (notifToggle) notifToggle.checked = enabled;
+
+  // Buton içeriğini güncelle
+  function updateNotifButtonUI() {
+    if (!notifButton) return;
+    notifButton.innerHTML = enabled
+      ? `<img src="assets/icons/bell-red.svg" alt="Bildirim İkonu" width="16" height="16"> Bildirimleri Kapat`
+      : `<img src="assets/icons/bell-red.svg" alt="Bildirim İkonu" width="16" height="16"> Bildirimleri Aç`;
+  }
+
+  updateNotifButtonUI();
+
+  // Switch toggle değişince
+  if (notifToggle) {
+    notifToggle.addEventListener('change', (e) => {
+      enabled = e.target.checked;
+      setNotificationPreference(enabled);
+      updateNotifButtonUI();
+    });
+  }
+
+  // "Bildirimleri Kapat/Aç" butonuna tıklanırsa
+  if (notifButton) {
+    notifButton.addEventListener('click', () => {
+      enabled = !enabled;
+      setNotificationPreference(enabled);
+      if (notifToggle) notifToggle.checked = enabled;
+      updateNotifButtonUI();
+    });
+  }
+});
+
+
+ </script>
+ <script src="alert.js"></script>
+ <script src="bildirim.js"></script>
+</body>
+</html>

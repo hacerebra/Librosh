@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Librosh | Ana Sayfa</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Manufacturing+Consent&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">
+      <img src="assets/icons/logo.png">
+    </div>
+    <nav class="menu">
+      <a href="kitaplar.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/categories-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/categories.svg'">
+        <img src="assets/icons/categories.svg" alt="Kategoriler İkonu" width="24" height="24">
+        Kategoriler
+      </a>
+      <a href="kullanıcı-kayit.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/edit-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/edit.svg'">
+        <img src="assets/icons/edit.svg" alt="Edit İkonu" width="24" height="24">
+        Kayıt Ol
+      </a>
+      <a href="kullanıcı-giris.html" class="menu-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/enter.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/enter-light.svg'">
+        <img src="assets/icons/enter-light.svg" alt="Giriş İkonu" width="24" height="24">
+        Kullanıcı Girişi
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Slider -->
+    <script src="script.js"></script>
+    <script src="slider.js"></script>
+    <section class="slider">
+    </section>
+
+    <!-- Content Cards Section -->
+    <section class="content-cards-section">
+        <!-- Günün Sözü -->
+        <div class="card quote-box">
+            <div class="quote-icon">
+                <img src="assets/icons/tirnak.svg" alt="Alıntı İkonu">
+            </div>
+            <div class="quote-content">
+                <p class="quote-label">Günün Sözü</p>
+                <a href="#" class="quote-link"
+                  onmouseenter="this.querySelector('img').src='assets/icons/book-open-dark.svg'"
+                  onmouseleave="this.querySelector('img').src='assets/icons/book-open.svg'">
+                  <img src="assets/icons/book-open.svg" alt="Kitap İkonu" width="18" height="18">
+                  Genç Werther’in Acıları
+                </a>
+                <blockquote>
+                    Kısaca, nasıl ki eskiden tüm mutlulukların kaynağı bendeyse, şimdi de tüm üzüntülerin kaynağı içimde saklı.
+                </blockquote>
+                <p class="quote-author">Johann Wolfgang Von Goethe <span>1774</span></p>
+            </div>
+        </div>
+
+        <!-- Kitaplık Oluşturma Kartı -->
+        <div class="card promo-card">
+            <div class="promo-bg">
+            </div>
+            <div class="promo-text">
+                <p>Kitaplığını oluşturup, favorilerini seçmek için Librosh’u keşfet!</p>
+                <a href="kullanıcı-kayit.html" class="promo-link"
+                  onmouseenter="this.querySelector('img').src='assets/icons/user-dark.svg'"
+                  onmouseleave="this.querySelector('img').src='assets/icons/user.svg'">
+                  <img src="assets/icons/user.svg" alt="Kitap İkonu" width="18" height="18">
+                  Kayıt Ol
+                </a>
+            </div>
+        </div>
+    </section>
+  </main>
+
+</body>
+</html>

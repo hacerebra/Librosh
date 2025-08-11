@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Librosh | Şifre Hatırlat</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Manufacturing+Consent&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="remind-container">
+    <h2>Parolamı Unuttum</h2>
+    <form id="remind-form">
+      <label for="remind-email">Kayıtlı E-posta</label>
+      <input type="email" id="remind-email" required>
+      <button type="submit">Şifreyi Göster</button>
+    </form>
+    <p id="remind-result"></p>
+    <a href="kullanıcı-giris.html">Kullanıcı Girişine Dön</a>
+  </div>
+  <script>
+    document.getElementById('remind-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+  
+      const email = document.getElementById('remind-email').value.trim();
+      const resultText = document.getElementById('remind-result');
+  
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const userIndex = users.findIndex(u => u.email === email);
+  
+      if (userIndex !== -1) {
+        // Rastgele şifre üret
+        const newPassword = Math.random().toString(36).slice(-8); // örn: "a9d3fj2k"
+  
+        // Şifreyi güncelle
+        users[userIndex].password = newPassword;
+        localStorage.setItem("users", JSON.stringify(users));
+  
+        // Kullanıcıya göster
+        resultText.innerHTML = `Yeni şifreniz: <strong>${newPassword}</strong><br>Giriş yaptıktan sonra şifrenizi değiştirmeyi unutmayın.`;
+        resultText.style.color = 'green';
+      } else {
+        resultText.textContent = "Bu e-posta ile kayıtlı kullanıcı bulunamadı.";
+        resultText.style.color = 'red';
+      }
+    });
+  </script>
+  
+</body>
+</html>

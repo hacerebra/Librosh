@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Librosh | Kullanıcı | Ana Sayfa</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Manufacturing+Consent&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">
+      <img src="assets/icons/logo.png">
+    </div>
+    <nav class="menu">
+      <a href="kategoriler.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/categories-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/categories.svg'">
+        <img src="assets/icons/categories.svg" alt="Kategoriler İkonu" width="24" height="24">
+        Kategoriler
+      </a>
+      <a href="kullanıcı-home.html" class="menu-button"
+      onmouseenter="this.querySelector('img').src='assets/icons/home.svg'"
+      onmouseleave="this.querySelector('img').src='assets/icons/home-light.svg'">
+      <img src="assets/icons/home-light.svg" alt="ev İkonu" width="24" height="24">
+      Ana Sayfa
+      </a>
+      <a href="kitaplık.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/library-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/library.svg'">
+        <img src="assets/icons/library.svg" alt="kitaplık İkonu" width="24" height="24">
+        Kitaplığım
+      </a>
+      <a href="favoriler.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/heart-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/heart.svg'">
+        <img src="assets/icons/heart.svg" alt="Kalp İkonu" width="24" height="24">
+        Favorilerim
+      </a>
+      <a href="profil.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/user-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/user.svg'">
+        <img src="assets/icons/user.svg" alt="Kullanıcı İkonu" width="24" height="24">
+        Profilim
+      </a>
+      <a href="#" class="notification-icon" id="notificationIcon">
+        <img src="assets/icons/bell.svg" alt="Bildirim İkonu" width="24" height="24">
+        <span class="badge" id="notificationBadge">0</span>
+      </a>      
+      <a href="index.html" class="notification-icon">
+        <img src="assets/icons/exit.svg" alt="Çıkış İkonu" width="24" height="24">
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Slider -->
+    <script src="script.js"></script>
+    <section class="slider">
+    </section>
+
+    <!-- Content Cards Section -->
+    <section class="content-cards-section">
+        <!-- Günün Sözü -->
+        <div class="card quote-box">
+            <div class="quote-icon">
+                <img src="assets/icons/tirnak.svg" alt="Alıntı İkonu">
+            </div>
+            <div class="quote-content">
+                <p class="quote-label">Günün Sözü</p>
+                <a href="#" class="quote-link"
+                  onmouseenter="this.querySelector('img').src='assets/icons/book-open-dark.svg'"
+                  onmouseleave="this.querySelector('img').src='assets/icons/book-open.svg'">
+                  <img src="assets/icons/book-open.svg" alt="Kitap İkonu" width="18" height="18">
+                  Genç Werther’in Acıları
+                </a>
+                <blockquote>
+                    Kısaca, nasıl ki eskiden tüm mutlulukların kaynağı bendeyse, şimdi de tüm üzüntülerin kaynağı içimde saklı.
+                </blockquote>
+                <p class="quote-author">Johann Wolfgang Von Goethe <span>1774</span></p>
+            </div>
+        </div>
+
+        <!-- Kitaplık Oluşturma Kartı -->
+        <!-- Dashboard Kutusu -->
+        <div class="card dashboard-box">
+            <div class="dashboard-content">
+              <div class="dashboard-card">
+                <div>
+                  <p class="dashboard-text">Kitaplığınızdaki kitap sayısı</p>
+                  <p class="dashboard-number" id="kitaplikCount">0</p>
+                </div>
+              </div>
+              <div class="dashboard-card">
+                <div>
+                  <p class="dashboard-text">Favori kitaplarınızın sayısı</p>
+                  <p class="dashboard-number" id="favorilerCount">0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </section>
+  </main>
+
+  <div id="notificationPanel">
+    <div class="notification-header">
+      <img src="assets/icons/bell.svg" alt="Bildirim" class="notif-bell-icon">
+      <h3>Bildirimler</h3>
+      <div class="notification-actions">
+        <button id="markAllReadBtn">Tümünü Oku</button>
+        <button id="clearAllBtn">Tümünü Sil</button>
+        <button id="closeNotifBtn">✕</button>
+      </div>
+    </div>
+    <div id="notificationList"></div>
+  </div>  
+  
+  <script>
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (!loggedInUser) {
+      window.location.href = 'kullanıcı-giris.html';
+    } else {
+      const email = loggedInUser.email;
+  
+      // Kitaplık ve favori sayıları
+      const kitaplikKey = `kitaplik_${email}`;
+      const favorilerKey = `favoriler_${email}`;
+      const kitaplikList = JSON.parse(localStorage.getItem(kitaplikKey)) || [];
+      const favorilerList = JSON.parse(localStorage.getItem(favorilerKey)) || [];
+  
+      document.getElementById('kitaplikCount').textContent = kitaplikList.length;
+      document.getElementById('favorilerCount').textContent = favorilerList.length;
+    }
+  </script>  
+  <script src="slider.js"></script> 
+  <script src="bildirim.js"></script>
+</body>
+</html>

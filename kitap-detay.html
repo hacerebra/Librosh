@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Librosh | Kitap Detay</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Manufacturing+Consent&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">
+      <img src="assets/icons/logo.png">
+    </div>
+    <nav class="menu">
+      <a href="kategoriler.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/categories-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/categories.svg'">
+        <img src="assets/icons/categories.svg" alt="Kategoriler İkonu" width="24" height="24">
+        Kategoriler
+      </a>
+      <a href="kullanıcı-home.html" class="link-button"
+      onmouseenter="this.querySelector('img').src='assets/icons/home-light.svg'"
+      onmouseleave="this.querySelector('img').src='assets/icons/home.svg'">
+      <img src="assets/icons/home.svg" alt="Ana sayfa İkonu" width="24" height="24">
+      Ana Sayfa
+      </a>
+      <a href="kitaplık.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/library-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/library.svg'">
+        <img src="assets/icons/library.svg" alt="kitaplık İkonu" width="24" height="24">
+        Kitaplığım
+      </a>
+      <a href="favoriler.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/heart-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/heart.svg'">
+        <img src="assets/icons/heart.svg" alt="Kalp İkonu" width="24" height="24">
+        Favorilerim
+      </a>
+      <a href="profil.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/user-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/user.svg'">
+        <img src="assets/icons/user.svg" alt="Kullanıcı İkonu" width="24" height="24">
+        Profilim
+      </a>
+      <a href="#" class="notification-icon" id="notificationIcon">
+        <img src="assets/icons/bell.svg" alt="Bildirim İkonu" width="24" height="24">
+        <span class="badge" id="notificationBadge">0</span>
+      </a>  
+      <a href="index.html" class="notification-icon">
+        <img src="assets/icons/exit.svg" alt="Çıkış İkonu" width="24" height="24">
+      </a>
+    </nav>
+  </header>
+
+  <div class="background-section">
+    <div class="kitap-ad-ve-butons">
+      <div class="kitap-ad">
+        <!-- kitap-ad içeriği -->
+        <a href="#"><img src="assets/icons/chevron-left.svg" alt="Geri İkonu" width="28" height="28"></a>
+        Açlık Oyunları
+        <div id="ortalamaYildizlar" style="margin-left: auto;"></div>
+      </div>
+      <div class="ekle-butonlar">
+        <button class="ekle"><img src="assets/icons/artı.svg" alt="Ekle" width="28" height="28"></button>
+      <button class="ekle"><img src="assets/icons/heart.svg" alt="Favori" width="28" height="28"></button>
+      </div>
+    </div>    
+    <main class="kitap-detay-container">
+      <div class="kitap-gorsel">
+        <img src="https://covers.openlibrary.org/b/id/13315465-M.jpg" alt="Kitap Kapak Görseli">
+      </div>
+      <div class="kitap-künye">
+        <h3 class="yazar">Yazar: </h3>
+        <h3 class="kategori">Kategori: </h3>
+        <h3 class="yil">Yıl: </h3>
+        <h3 class="yayinevi">Yayınevi: </h3>
+        <h3 class="sayfa">Sayfa Sayısı: </h3>
+      </div> 
+      <div class="kitap-künye">
+        <h3>Kitap Hakkında</h3>
+        <p>
+        Açlık Oyunları, Amerikalı yazar Suzanne Collins'in 2008'de yayımlanan distopik macera türündeki romanıdır. Roman, Kuzey Amerika'da, gelecekte, kıyamet sonrası bir dönemde yer alan Panem adlı kurgusal ülkenin halkından olan 16 yaşındaki Katniss Everdeen'in bakış açısıyla yazılmıştır.
+        </p>
+      </div>
+    </main>
+    
+    <div class="comment-header-bar">
+      <div class="comment-title">
+        <img src="assets/icons/comment.svg" alt="Yorumlar" width="24" height="24">
+        <h2>Yorumlar</h2>
+      </div>
+      <button id="toggleCommentInput" class="add-comment-icon">
+        <img src="assets/icons/artı.svg" alt="Yorum Ekle" width="24" height="24">
+      </button>
+    </div>    
+      <div class="comment-list">
+
+      </div>
+    
+      <div class="add-comment-container" style="display: none;">
+        <div class="comment-input-box">
+          <textarea id="userComment" placeholder="Yorumunuzu buraya yazın..."></textarea>
+          <div class="rating-container">
+            <span class="star" data-value="1">☆</span>
+            <span class="star" data-value="2">☆</span>
+            <span class="star" data-value="3">☆</span>
+            <span class="star" data-value="4">☆</span>
+            <span class="star" data-value="5">☆</span>
+          </div>
+          <button id="submitComment">Yorumu Gönder</button>
+        </div>
+      </div>
+      <div id="no-comments-message" style="display: none; color: #666; text-align: center; margin-top: 10px; font-size: 18px;">
+        Henüz yorum yapılmamış.
+      </div>      
+    
+    </div>
+
+      <div id="customAlert" class="custom-alert">
+        <div class="alert-box">
+          <h3 class="alert-title">Bilgilendirme</h3>
+          <p id="alertMessage"></p>
+          <button onclick="closeCustomAlert()">Tamam</button>
+        </div>
+      </div>
+
+      <div id="notificationPanel">
+        <div class="notification-header">
+          <img src="assets/icons/bell.svg" alt="Bildirim" class="notif-bell-icon">
+          <h3>Bildirimler</h3>
+          <div class="notification-actions">
+            <button id="markAllReadBtn">Tümünü Oku</button>
+            <button id="clearAllBtn">Tümünü Sil</button>
+            <button id="closeNotifBtn">✕</button>
+          </div>
+        </div>
+        <div id="notificationList"></div>
+      </div>  
+      
+      <script>
+        let kitap = {};
+        let selectedRating = 0;
+        let userData = JSON.parse(localStorage.getItem("loggedInUser")) || {};
+        let username = userData.username || "Misafir";
+        let userPhoto = "assets/icons/user.svg";
+        
+        if (userData.gender?.toLowerCase() === "erkek") {
+          userPhoto = "assets/images/male.png";
+        } else if (userData.gender?.toLowerCase() === "kadın") {
+          userPhoto = "assets/images/female.png";
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+          const params = new URLSearchParams(window.location.search);
+        
+          kitap = {
+            title: params.get("title") || "Bilinmiyor",
+            author: params.get("author") || "Bilinmiyor",
+            category: params.get("category") || "Bilinmiyor",
+            cover: params.get("cover") || "https://via.placeholder.com/120x180?text=No+Image",
+            year: params.get("year") || "Bilinmiyor",
+            publisher: params.get("publisher") || "Bilinmiyor",
+            pages: params.get("pages") || "Bilinmiyor"
+          };
+        
+          updateBookDetails();
+          handleButtons();
+          setupCommentStars();
+          setupCommentInputToggle();
+          loadComments();
+          checkComments();
+        });
+        
+        function updateBookDetails() {
+          document.querySelector(".kitap-ad").innerHTML = `
+            <a href="javascript:history.back()">
+              <img src="assets/icons/chevron-left.svg" alt="Geri İkonu" width="28" height="28">
+            </a>
+            ${kitap.title}
+            <div id="ortalamaYildizlar" style="margin-left: auto;"></div>
+          `;
+          document.querySelector(".kitap-gorsel img").src = kitap.cover;
+        
+          const künye = document.querySelectorAll(".kitap-künye h3");
+          [kitap.author, kitap.category, kitap.year, kitap.publisher, kitap.pages].forEach((info, i) => {
+            const labels = ["Yazar", "Kategori", "Yıl", "Yayın Evi", "Sayfa Sayısı"];
+            künye[i].textContent = `${labels[i]}: ${info}`;
+          });
+        }
+        
+        function handleButtons() {
+          const email = userData.email || "guest";
+          const kitaplikKey = `kitaplik_${email}`;
+          const favorilerKey = `favoriler_${email}`;
+        
+          const artıButon = document.querySelectorAll('.ekle')[0];
+          const kalpButon = document.querySelectorAll('.ekle')[1];
+        
+          artıButon.addEventListener('click', () => {
+            toggleItem(kitaplikKey, artıButon, {
+              filled: 'assets/icons/eksi.svg',
+              empty: 'assets/icons/artı.svg'
+            });
+          });
+        
+          kalpButon.addEventListener('click', () => {
+            toggleItem(favorilerKey, kalpButon, {
+              filled: 'assets/icons/heart-dolu.svg',
+              empty: 'assets/icons/heart.svg'
+            });
+          });
+        
+          updateButtonStates();
+        
+          function toggleItem(key, button, icons) {
+            let list = JSON.parse(localStorage.getItem(key)) || [];
+            const found = list.find(k => k.title === kitap.title);
+            const img = button.querySelector('img');
+        
+            if (found) {
+              list = list.filter(k => k.title !== kitap.title);
+              img.src = icons.empty;
+              showCustomAlert(`${kitap.title} kaldırıldı.`);
+            } else {
+              list.push(kitap);
+              img.src = icons.filled;
+              showCustomAlert(`${kitap.title} eklendi.`);
+            }
+            localStorage.setItem(key, JSON.stringify(list));
+          }
+        
+          function updateButtonStates() {
+            const kitaplik = JSON.parse(localStorage.getItem(kitaplikKey)) || [];
+            const favoriler = JSON.parse(localStorage.getItem(favorilerKey)) || [];
+        
+            artıButon.querySelector('img').src = kitaplik.some(k => k.title === kitap.title) ? 'assets/icons/eksi.svg' : 'assets/icons/artı.svg';
+            kalpButon.querySelector('img').src = favoriler.some(k => k.title === kitap.title) ? 'assets/icons/heart-dolu.svg' : 'assets/icons/heart.svg';
+          }
+        }
+        
+        function setupCommentStars() {
+          document.querySelectorAll(".comment-input-box .star").forEach(star => {
+            star.addEventListener("click", () => {
+              selectedRating = parseInt(star.dataset.value);
+              updateStars(selectedRating);
+            });
+          });
+        }
+        
+        function updateStars(rating) {
+          document.querySelectorAll(".comment-input-box .star").forEach(star => {
+            star.textContent = parseInt(star.dataset.value) <= rating ? "⭐" : "☆";
+          });
+        }
+        
+        function setupCommentInputToggle() {
+          document.getElementById("toggleCommentInput").addEventListener("click", () => {
+            const commentBox = document.querySelector(".add-comment-container");
+            commentBox.style.display = commentBox.style.display === "none" ? "block" : "none";
+          });
+        }
+        
+        function loadComments() {
+          const key = `comments_${kitap.title}`;
+          const comments = JSON.parse(localStorage.getItem(key)) || [];
+          const commentList = document.querySelector(".comment-list");
+          commentList.innerHTML = "";
+        
+          comments.forEach(c => {
+            const isOwnComment = c.username === username;
+            const commentHTML = `
+              <div class="comment-card">
+                <div class="comment-header">
+                  <div class="comment-left">
+                    <div class="user-avatar" style="background-image: url('${c.userPhoto}'); background-size: cover;"></div>
+                    <span class="username">${c.username}</span>
+                  </div>
+                  <div class="comment-rating">${[1,2,3,4,5].map(i => i <= c.rating ? '⭐' : '☆').join('')}</div>
+                </div>
+                <p class="comment-text">${c.text}</p>
+                <div class="comment-date">${c.date}</div>
+                ${isOwnComment ? `
+                  <div class="comment-actions">
+                    <button class="edit-comment-btn" data-username="${c.username}"><img src="assets/icons/edit.svg" width="16" height="16"></button>
+                    <button class="delete-comment-btn" data-username="${c.username}"><img src="assets/icons/trash.svg" width="16" height="16"></button>
+                  </div>` : ""}
+              </div>`;
+            commentList.insertAdjacentHTML("beforeend", commentHTML);
+          });
+        
+          attachCommentActionButtons();
+          hesaplaOrtalamaYildiz();
+          checkComments();
+        }
+        
+        function attachCommentActionButtons() {
+          document.querySelectorAll('.delete-comment-btn').forEach(btn => {
+            btn.addEventListener('click', () => deleteComment(btn.dataset.username));
+          });
+        
+          document.querySelectorAll('.edit-comment-btn').forEach(btn => {
+            btn.addEventListener('click', () => editComment(btn.dataset.username));
+          });
+        }
+        
+        function deleteComment(usernameToDelete) {
+          const key = `comments_${kitap.title}`;
+          let comments = JSON.parse(localStorage.getItem(key)) || [];
+          comments = comments.filter(c => c.username !== usernameToDelete);
+          localStorage.setItem(key, JSON.stringify(comments));
+          showCustomAlert("Yorum silindi.");
+          loadComments();
+        }
+        
+        function editComment(usernameToEdit) {
+          const key = `comments_${kitap.title}`;
+          const comments = JSON.parse(localStorage.getItem(key)) || [];
+          const commentIndex = comments.findIndex(c => c.username === usernameToEdit);
+          if (commentIndex === -1) return;
+        
+          const comment = comments[commentIndex];
+          const card = document.querySelectorAll('.comment-card')[commentIndex];
+          card.innerHTML = `
+            <div class="comment-input-box" style="width:100%">
+              <textarea class="edit-textarea">${comment.text}</textarea>
+              <div class="rating-container">
+                ${[1,2,3,4,5].map(i => `<span class="edit-star" data-value="${i}">${i <= comment.rating ? '⭐' : '☆'}</span>`).join('')}
+              </div>
+              <button class="save-edit-btn">Güncelle</button>
+              <button class="cancel-edit-btn">İptal</button>
+            </div>`;
+        
+          let updatedRating = comment.rating;
+          card.querySelectorAll('.edit-star').forEach(star => {
+            star.addEventListener('click', () => {
+              updatedRating = parseInt(star.dataset.value);
+              card.querySelectorAll('.edit-star').forEach(s => {
+                s.textContent = parseInt(s.dataset.value) <= updatedRating ? '⭐' : '☆';
+              });
+            });
+          });
+        
+          card.querySelector('.save-edit-btn').addEventListener('click', () => {
+            const newText = card.querySelector('.edit-textarea').value.trim();
+            if (!newText || updatedRating === 0) return showCustomAlert("Yorum ve puan boş olamaz.");
+        
+            comments[commentIndex] = { ...comment, text: newText, rating: updatedRating };
+            localStorage.setItem(key, JSON.stringify(comments));
+            loadComments();
+            showCustomAlert("Yorum güncellendi.");
+          });
+        
+          card.querySelector('.cancel-edit-btn').addEventListener('click', loadComments);
+        }
+        
+        document.getElementById("submitComment").addEventListener("click", () => {
+          const commentText = document.getElementById("userComment").value.trim();
+          if (!commentText || selectedRating === 0) return showCustomAlert("Lütfen yorum ve puan giriniz.");
+        
+          const commentObj = {
+            username,
+            userPhoto,
+            rating: selectedRating,
+            text: commentText,
+            date: new Date().toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" })
+          };
+        
+          const key = `comments_${kitap.title}`;
+          let comments = JSON.parse(localStorage.getItem(key)) || [];
+          const existingIndex = comments.findIndex(c => c.username === username);
+          if (existingIndex !== -1) comments[existingIndex] = commentObj;
+          else comments.push(commentObj);
+          localStorage.setItem(key, JSON.stringify(comments));
+        
+          document.getElementById("userComment").value = "";
+          selectedRating = 0;
+          updateStars(0);
+          document.querySelector(".add-comment-container").style.display = "none";
+          loadComments();
+        });
+        
+        function hesaplaOrtalamaYildiz() {
+          const comments = JSON.parse(localStorage.getItem(`comments_${kitap.title}`)) || [];
+          const ortalamaDiv = document.getElementById("ortalamaYildizlar");
+        
+          if (!comments.length) return ortalamaDiv.innerHTML = "<span style='font-size: 18px; color: #999;'>Henüz oy yok</span>";
+        
+          const ort = comments.reduce((acc, curr) => acc + curr.rating, 0) / comments.length;
+          ortalamaDiv.innerHTML = Array.from({length: 5}, (_, i) => `<span style="font-size: 20px;">${i < Math.floor(ort) ? '⭐' : '☆'}</span>`).join('') +
+            ` <span style="font-size:14px; color:gray;">(${ort.toFixed(1)})</span>`;
+        }
+        
+        function checkComments() {
+          const commentList = document.querySelector('.comment-list');
+          const noCommentsMessage = document.getElementById('no-comments-message');
+          noCommentsMessage.style.display = (!commentList || !commentList.children.length) ? 'block' : 'none';
+        }
+        
+        function showCustomAlert(message) {
+          const alert = document.getElementById("customAlert");
+          const msg = document.getElementById("alertMessage");
+          if (alert && msg) {
+            msg.textContent = message;
+            alert.style.display = "flex";
+          }
+        }
+        
+        function closeCustomAlert() {
+          const alert = document.getElementById("customAlert");
+          if (alert) alert.style.display = "none";
+        }
+        </script>          
+    <script src="script.js"></script>
+    <script src="alert.js"></script>
+    <script src="bildirim.js"></script>
+</body>
+</html>

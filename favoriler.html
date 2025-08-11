@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Librosh | Favoriler</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Manufacturing+Consent&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">
+      <img src="assets/icons/logo.png">
+    </div>
+    <nav class="menu">
+      <a href="kategoriler.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/categories-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/categories.svg'">
+        <img src="assets/icons/categories.svg" alt="Kategoriler İkonu" width="24" height="24">
+        Kategoriler
+      </a>
+      <a href="kullanıcı-home.html" class="link-button"
+      onmouseenter="this.querySelector('img').src='assets/icons/home-light.svg'"
+      onmouseleave="this.querySelector('img').src='assets/icons/home.svg'">
+      <img src="assets/icons/home.svg" alt="ev İkonu" width="24" height="24">
+      Ana Sayfa
+      </a>
+      <a href="kitaplık.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/library-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/library.svg'">
+        <img src="assets/icons/library.svg" alt="kitaplık İkonu" width="24" height="24">
+        Kitaplığım
+      </a>
+      <a href="#" class="menu-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/heart.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/heart-light.svg'">
+        <img src="assets/icons/heart-light.svg" alt="Kalp İkonu" width="24" height="24">
+        Favorilerim
+      </a>
+      <a href="profil.html" class="link-button"
+        onmouseenter="this.querySelector('img').src='assets/icons/user-light.svg'"
+        onmouseleave="this.querySelector('img').src='assets/icons/user.svg'">
+        <img src="assets/icons/user.svg" alt="Kullanıcı İkonu" width="24" height="24">
+        Profilim
+      </a>
+      <a href="#" class="notification-icon" id="notificationIcon">
+        <img src="assets/icons/bell.svg" alt="Bildirim İkonu" width="24" height="24">
+        <span class="badge" id="notificationBadge">0</span>
+      </a>  
+      <a href="index.html" class="notification-icon">
+        <img src="assets/icons/exit.svg" alt="Çıkış İkonu" width="24" height="24">
+      </a>
+    </nav>
+  </header>
+
+  <main>
+      <div class="search-wrapper">
+        <div class="search-box">
+          <div id="aramaBarAnimasyon" class="search-animation"></div>
+          <input type="text" id="searchInput" placeholder="Arama Yapınız..." class="search-input" readonly>
+        </div>
+      </div>
+      <div class="kitaplar-container" id="favorilerContainer"></div>
+
+      <div id="notificationPanel">
+        <div class="notification-header">
+          <img src="assets/icons/bell.svg" alt="Bildirim" class="notif-bell-icon">
+          <h3>Bildirimler</h3>
+          <div class="notification-actions">
+            <button id="markAllReadBtn">Tümünü Oku</button>
+            <button id="clearAllBtn">Tümünü Sil</button>
+            <button id="closeNotifBtn">✕</button>
+          </div>
+        </div>
+        <div id="notificationList"></div>
+      </div>  
+      
+      <script>
+        // Kullanıcı giriş kontrolü
+        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        if (!loggedInUser) {
+          window.location.href = 'kullanıcı-giris.html';
+        } else {
+          const favorilerContainer = document.getElementById('favorilerContainer');
+          const favorilerList = JSON.parse(localStorage.getItem(`favoriler_${loggedInUser.email}`)) || [];
+      
+          if (favorilerList.length === 0) {
+            // Favori yoksa mesaj göster
+            favorilerContainer.classList.add('favoriler-bos');
+            favorilerContainer.innerHTML = `
+              <img src="assets/images/bos.png" alt="Favori bulunamadı" class="favoriler-bos">
+              <p class="bos-favori">Favorilerinde kitap yok. Kategorileri keşfet.</p>
+            `;
+          } else {
+            // Favori kitaplar için kart oluşturma ve tıklama olayını ekleme
+            favorilerList.forEach(kitap => {
+              const card = document.createElement('div');
+              card.className = 'kitap-karti';
+              card.innerHTML = `
+                <img src="${kitap.cover || 'https://via.placeholder.com/120x180?text=No+Image'}" alt="${kitap.title || 'Kitap Resmi'}" class="kitap-resim">
+                <div class="kitap-bilgi">
+                  <p class="kitap-adi">${kitap.title || ''}</p>
+                  <p class="yazar-adi">${kitap.author || ''}</p>
+                </div>
+              `;
+      
+              // Kart tıklanınca kitap detay sayfasına git
+              card.addEventListener('click', () => {
+                const detaySayfasi = 'kitap-detay.html';
+                const params = new URLSearchParams({
+                  title: kitap.title || '',
+                  author: kitap.author || '',
+                  cover: kitap.cover || '',
+                  category: kitap.category || '',
+                  publisher: kitap.publisher || '',
+                  year: kitap.year || '',
+                  pages: kitap.pages || ''
+                });
+                window.location.href = `${detaySayfasi}?${params.toString()}`;
+              });
+      
+              favorilerContainer.appendChild(card);
+            });
+          }
+        }
+      </script>
+      <script src="https://unpkg.com/lottie-web@5.7.4/build/player/lottie.min.js"></script>
+    <script src="arama.js"></script>
+    <script src="bildirim.js"></script>
+ </main>
+</body>
+</html>
